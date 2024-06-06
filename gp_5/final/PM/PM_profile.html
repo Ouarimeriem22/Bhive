@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/sidebar.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" />
+</head>
+
+<body>
+    <div class="sidebar">
+        <!-- Sidebar content goes here -->
+        <h2 style="font-weight: 50;margin-top: 25px;margin-left:30px;">
+            <b style="font-weight: 900;">B</b>hive
+        </h2>
+        <div class="sidebar-item">
+            <img src="../assets/icons/project_space.svg">
+            <span onclick="navigateToPage('PM_ps.html');">Project Space</span>
+        </div>
+        
+        <div class="sidebar-item">
+            <img src="../assets/icons/employee.svg">
+            <span onclick="navigateToPage('Employee.html');">Employee</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/profile.svg">
+            <span onclick="navigateToPage('PM_Profile.html');">Profile</span>
+        </div>
+        <div class="sidebar-item logout-item">
+            <img src="../assets/icons/Logout.svg">
+            <span onclick="showLogoutConfirmation();">Log out</span>
+        </div>
+    </div>
+  
+    <div class="main-content">
+        <h1>Profile</h1>
+        <div class="profile-card">
+            <div class="cover-image">
+                <!-- Cover image goes here -->
+                <img src="../assets/images/cover.png" alt="Cover Image">
+            </div>
+            <div class="profile-picture">
+                <!-- Profile picture goes here -->
+                <img src="../assets/images/profile.png" alt="Profile Picture">
+            </div>
+            <div >
+                <h3 style="position:absolute;top: 57%;right:33%">Adela Parkson</h3>
+                <p style=" color: #A3AED0;font-weight: 400;position:absolute;top: 70%;right:33%;font-size:small">Social Media Manager</p>
+            </div>
+        </div>
+        <div class="settings-card">
+            <h3>Settings</h3>
+            <p>Change Password</p>
+            <p>Update Profile Picture</p>
+
+        </div>
+        <div class="cv-card">
+            <h2 style="margin-left: 18px;margin-top:10px">cv</h2>
+            <div style="overflow-y: scroll; height: 80%;">
+                <img src="../assets/images/cv.png" alt="CV Picture" style="width: 100%;" />
+            </div>
+
+        </div>
+
+
+        
+    </div>
+    
+    <div id="logoutModal">
+        <div class="modal-content">
+            <h2>Are you sure you want to log out?</h2>
+            <button onclick="navigateToPage('../Login.html');">Confirm</button>
+            <button class="cancel" onclick="hideLogoutConfirmation();">Cancel</button>
+        </div>
+    </div>
+
+    //change pw model //
+
+    <div id="changePasswordModal" class="modal" 
+        style="display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+        z-index: 1000; /* Ensure modal appears on top of other content */
+        overflow: auto;">
+
+        <div class="modal-content" 
+        style="background-color: #fefefe; 
+        margin: 13% auto; 
+        padding: 20px; 
+        border: 1px solid #888; 
+        width: 30%; 
+        max-width: 400px;
+        height:fit-content;">
+            <span class="close" onclick="hideChangePasswordModal()" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+        <form id="passwordChangeForm" style="margin-top:15px;">
+            <h2>Change Password</h2>
+            <div style="margin-bottom:20px;">
+                <label for="currentPassword" style="font-size:16px; color:#333;">Current Password:</label>
+                <input type="password" id="currentPassword" name="currentPassword" required style="width: 80%; padding:15px; margin-top:5px;">
+            </div>
+            <div style="margin-bottom:20px;">
+                <label for="newPassword" style="font-size:16px; color:#333;">New Password:</label>
+                <input type="password" id="newPassword" name="newPassword" required style="width:80%; padding:15px; margin-top:5px;">
+            </div>
+            <div style="margin-bottom:20px;">
+                <label for="confirmNewPassword" style="font-size:16px; color:#333;">Confirm New Password:</label>
+                <input type="password" id="confirmNewPassword" name="confirmNewPassword" required style="width:80%; padding:15px; margin-top:5px;">
+            </div>
+            <button type="submit" style="width:50%; padding:15px; background-color:#0052cc; color:white; border:none; border-radius:4px; cursor:pointer;">Submit</button>
+        </form>
+        </div>
+    </div>
+
+    ///update profile pic model ///
+    <div id="updateProfilePicModal" class="modal" 
+        style="display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+                z-index: 1000; /* Ensure modal appears on top of other content */
+                overflow: auto;">
+
+        <div class="modal-content" 
+            style="background-color: #fefefe; 
+                    margin: 13% auto; 
+                    padding: 20px; 
+                    border: 1px solid #888; 
+                    width: 30%; 
+                    max-width: 400px;
+                    height:fit-content;">
+            <span class="close" onclick="hideUpdateProfilePicModal()" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <form id="profilePictureForm" style="margin-top:15px; text-align: center;">
+                <h2 style="text-align: center;">Update Profile Picture</h2>
+                <label for="profilePicture" style="background-color: #0052cc; color: white; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-bottom: 10px; display: inline-block;">
+                    Choose File
+                    <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required style="display: none;" onchange="updateFileName()">
+                </label>
+                <span id="file-name" style="display: block; font-size: 16px; margin-top: 10px;">No file chosen</span>
+                <button type="submit" style="width:50%; padding:15px; background-color:#0052cc; color:white; border:none; border-radius:4px; cursor:pointer; margin-top: 20px;">Update</button>
+            </form>
+        </div>
+    </div>
+
+
+    
+    <script>
+        function navigateToPage(url) {
+            window.location.href = url;
+        }
+
+        function showLogoutConfirmation() {
+            document.getElementById('logoutModal').style.display = 'block';
+        }
+
+        function hideLogoutConfirmation() {
+            document.getElementById('logoutModal').style.display = 'none';
+        }
+
+        ///////////
+
+        function showChangePasswordModal() {
+            document.getElementById('changePasswordModal').style.display = 'block';
+        }
+
+        function hideChangePasswordModal() {
+            document.getElementById('changePasswordModal').style.display = 'none';
+        }
+
+        function showUpdateProfilePicModal() {
+            document.getElementById('updateProfilePicModal').style.display = 'block';
+        }
+
+        function hideUpdateProfilePicModal() {
+            document.getElementById('updateProfilePicModal').style.display = 'none';
+        }
+
+        function updateFileName() {
+            var input = document.getElementById('profilePicture');
+            var fileName = input.files.length > 0 ? input.files[0].name : 'No file chosen';
+            document.getElementById('file-name').textContent = fileName;
+        }
+
+</script>
+
+
+</body>
+
+</html>

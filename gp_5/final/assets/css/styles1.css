@@ -1,0 +1,273 @@
+
+
+.white-container {
+    background-color: #fff;
+    margin-bottom: 20px;
+    margin-right: 250px;
+    margin-top: 15px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.input-container {
+    margin-bottom: 20px; /* reduced margin for smaller space */
+    display: flex;
+    align-items: center;
+}
+
+.input-container label {
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.input-container input,
+.input-container textarea {
+    flex: 1;
+    background-color: #F2F4FD;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.input-container textarea {
+    height: 100px;
+    resize: none;
+}
+
+/* CSS */
+.search-btn {
+    background-color: #4318FF;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    position: absolute; /* Position the button absolutely */
+    bottom: 10px; /* Align the button to the bottom of the container */
+    right: 20px; /* Align the button to the right of the container */
+}
+
+.search-btn:hover {
+    background-color: #3215cc;
+}
+
+/* Style for smaller second container */
+.small-container {
+    background-color: #fff;
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* CSS */
+.profile-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Reduced margin between profile name and sentence */
+}
+
+.profile-info img {
+    margin-right: 10px;
+    margin-left: 15px;
+}
+
+/* Add button */
+.add-btn {
+    background-color: #4318FF; /* same color as search button */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.add-btn:hover {
+    background-color: #3215cc; /* darker shade on hover */
+}
+
+
+
+
+
+
+
+/* CSS */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+  
+}
+
+.login-picture {
+    width: 50%;
+    background-color: #F2F4FD;
+}
+
+.login-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire container */
+}
+
+.login-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-top: 100px;
+    align-items: center;
+    padding: 20px;
+}
+
+.input-container {
+    margin-bottom: 50px;
+    margin-top: 10px;
+}
+
+.input-container label {
+    font-size: 12px;
+    color: #A3AED0;
+    margin-bottom: 5px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px; /* Add space between label and input */
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 0px;
+
+}
+
+.checkbox-container input {
+    margin-right: 30px;
+}
+
+.forgot-password {
+    margin-right: 100px;
+    color: #4318FF;
+    font-size: 14;
+}
+.keep-logged-in {
+    margin-left:160px; /* Push the "Keep me logged in" checkbox to the right */
+}
+
+
+.login-btn {
+    background-color: #4318FF;
+    color: #fff;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 80%;
+    margin-left: 50px;
+}
+.login-btn:hover {
+    background-color: #3215cc;
+}
+
+
+
+
+
+.login-card {
+    
+    width: 35%; 
+    height: 500px; 
+    background-color: #F4F7FE;
+    border-radius: 12px; 
+    padding: 10px; 
+    margin-top: 10%;
+    margin-bottom: 15px; 
+    margin-right: 200px;
+    margin-left: 100px;
+
+     
+}
+
+.input-field {
+    position: relative;
+    margin-bottom: 40px;
+    margin-left: 38px;
+   
+}
+.input-field label {
+    display: block;
+    font-weight: 500;
+}
+
+.input-field input {
+    width: 90%;
+    height: 30px;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid #E0E5F2;
+    margin-bottom: 6px;
+    
+}
+
+.input-field input::placeholder {
+    color: #A3AED0; 
+    
+}
+
+
+
+
+
+
+
+
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 25%; /* Adjust sidebar width for smaller screens */
+    }
+
+    .main-content {
+        margin-left: 25%; /* Adjust main content margin for smaller screens */
+    }
+
+    .white-container {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    .search-btn {
+        padding: 8px 1px; /* Adjust search button padding for smaller screens */
+    }
+
+    .add-btn {
+        padding: 8px 12px; /* Adjust add button padding for smaller screens */
+    }
+     /* Adjust login form width for smaller screens */
+    .login-form {
+        width: 90%;
+    }
+
+    /* Hide the picture container on smaller screens */
+    .login-picture {
+        display: none;
+    }
+}

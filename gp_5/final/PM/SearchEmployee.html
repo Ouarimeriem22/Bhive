@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admins</title>
+    <link rel="stylesheet" href="../assets/css/styles1.css">
+    <link rel="stylesheet" href="../assets/css/sidebar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+</head>
+<body>
+    <div class="sidebar">
+        <!-- Sidebar content goes here -->
+        <h2 style="font-weight: 50;margin-top: 25px;margin-left:30px;">
+            <b style="font-weight: 900;">B</b>hive
+        </h2>
+        <div class="sidebar-item">
+            <img src="../assets/icons/project_space.svg">
+            <span onclick="navigateToPage('PM_ps.html');">Project Space</span>
+        </div>
+        
+        <div class="sidebar-item">
+            <img src="../assets/icons/employee.svg">
+            <span onclick="navigateToPage('Employee.html');">Employee</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/profile.svg">
+            <span onclick="navigateToPage('PM_Profile.html');">Profile</span>
+        </div>
+        <div class="sidebar-item logout-item">
+            <img src="../assets/icons/Logout.svg">
+            <span onclick="showLogoutConfirmation();">Log out</span>
+        </div>
+    </div>
+  
+    <div class="main-content">
+        <!-- Main content goes here -->
+        <h2> Project Name  </h2>
+        <div class="white-container">
+            <div class="input-container">
+                <label for="job" style=" color: #2B3674;font-weight: bold;" >Job:</label>
+                <input type="text" id="job" placeholder="Enter job title">
+            </div>
+            <div class="input-container">
+                <label for="skills" style=" color: #2B3674;font-weight: bold;">Skills:</label>
+                <textarea id="skills" placeholder="Enter required skills"></textarea>
+            </div>
+            <button class="search-btn">Search</button>
+        </div>
+        <div class="white-container small-container">
+            <!-- Employee profile content here -->
+            <div class="profile-info">
+                <img src="../assets/images/Ellipse 75.png" alt="Profile Image" style="width: 50px; height: 50px; border-radius: 50%;">
+                <div>
+                    <h4 style="font-weight: bold; font-size: 16px; color: #2B3674;">Employee Profile 2</h4>
+                    <h6 style="font-weight: medium ;font-size: 12px; color: #A3AED0; margin: 5px 0;">Creative Director </h6>
+                </div>
+            </div>
+            <!-- Add button -->
+            <button class="add-btn">Add</button>
+        </div>  
+        <div class="white-container small-container">
+            <!-- Employee profile content here -->
+            <div class="profile-info">
+                <img src="../assets/images/Ellipse 75.png" alt="Profile Image" style="width: 50px; height: 50px; border-radius: 50%;">
+                <div>
+                    <h4 style="font-weight: bold; font-size: 16px; color: #2B3674;">Employee Profile 2</h4>
+                    <h6 style="font-weight: medium ;font-size: 12px; color: #A3AED0; margin: 5px 0;">Creative Director </h6>
+                </div>
+            </div>
+            <!-- Add button -->
+            <button class="add-btn">Add</button>
+        </div>  
+        <div class="white-container small-container">
+            <!-- Employee profile content here -->
+            <div class="profile-info">
+                <img src="../assets/images/Ellipse 75.png" alt="Profile Image" style="width: 50px; height: 50px; border-radius: 50%;">
+                <div>
+                    <h4 style="font-weight: bold; font-size: 16px; color: #2B3674;">Employee Profile 2</h4>
+                    <h6 style="font-weight: medium ;font-size: 12px; color: #A3AED0; margin: 5px 0;">Creative Director </h6>
+                </div>
+            </div>
+            <!-- Add button -->
+            <button class="add-btn">Add</button>
+        </div>        
+        
+    </div>
+
+    <div id="logoutModal">
+        <div class="modal-content">
+            <h2>Are you sure you want to log out?</h2>
+            <button onclick="navigateToPage('../Login.html');">Confirm</button>
+            <button class="cancel" onclick="hideLogoutConfirmation();">Cancel</button>
+        </div>
+    </div>
+
+    
+    <script>
+        function navigateToPage(url) {
+            window.location.href = url;
+        }
+
+        function showLogoutConfirmation() {
+            document.getElementById('logoutModal').style.display = 'block';
+        }
+
+        function hideLogoutConfirmation() {
+            document.getElementById('logoutModal').style.display = 'none';
+        }
+        </script>
+</body>
+</html>

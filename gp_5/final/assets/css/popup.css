@@ -1,0 +1,91 @@
+.formaddbtn {
+    background-color: #4318FF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.formcancelbtn {
+    color: #4318FF;
+    background-color: #fff;
+    border-color: #4318FF;
+    border-width: 1.7px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.form-popup {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure the form appears above the modal overlay */
+    transform: translate(-50%, -50%);
+    
+}
+
+.form-container {
+    padding: 18px;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #2B3674;
+}
+
+.form-container input[type="text"],
+.form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-popup.blur-background {
+    filter: blur(4px);
+}
+
+/* Add this class to the body when the form pops up */
+.blurred {
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Ensure the rest of the page content is visible when blurred */
+.main-content {
+    position: relative;
+    z-index: 1;
+}
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 999; /* Ensure it appears above other content */
+    display: none; /* Initially hidden */
+}
+.blur-background {
+    filter: blur(5px);
+}
