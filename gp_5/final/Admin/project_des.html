@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+    <link rel="stylesheet" href="../assets/css/sidebar.css">
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../components/card.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="../assets/css/teskstyle.css">
+
+</head>
+<body>
+    <div class="sidebar">
+        <!-- Sidebar content goes here -->
+        <h2 style="font-weight: 50;margin-top: 25px;margin-left:30px;">
+            <b style="font-weight: 900;">B</b>hive
+        </h2>
+        <div class="sidebar-item">
+            <img src="../assets/icons/project_space.svg" />
+            <span onclick="navigateToPage('admins_ps.html');">Project Space</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/admins.svg" />
+            <span onclick="navigateToPage('admins.html');">Admin</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/employee.svg" />
+            <span onclick="navigateToPage('Employees.html');">Employee</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/profile.svg">
+            <span onclick="navigateToPage('Profile.html');">Profile</span>
+        </div>
+        <div class="sidebar-item logout-item">
+            <img src="../assets/icons/Logout.svg">
+            <span onclick="showLogoutConfirmation();">Log out</span>
+        </div>
+    </div>
+  
+
+    <div class="main-content">
+      <div class="header-container">
+            <a href="projectview.html" style="text-decoration: none; color: inherit;">
+                <h2>← Bhive</h2>
+            </a>
+                <!--  <div class="project-manager-card">
+                <img src="../assets/images/profile.png" alt="Madam Selma" class="manager-avatar-card">
+                <div class="manager-info-card">
+                    <span class="manager-name-card">Madam Selma</span>
+                </div>
+            </div>-->
+        </div> 
+    
+
+        <div class="project-description" 
+        style="background-color: #ffffff; 
+        border-radius: 15px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        padding: 20px; 
+        margin: 20px 0;
+        width: 920px; 
+        line-height: 1.6; ">
+            <h2>Project description</h2>
+            <p style="color: #888;">
+                Project LinguoBot: An AI endeavor focused on advancing natural language processing capabilities. LinguoBot employs state-of-the-art algorithms to understand and generate human-like text across multiple languages. Through continual learning and adaptation, it aims to break barriers in communication, facilitating seamless interaction between individuals and machines.
+            </p>
+
+            <h2 style="margin-top: 50px; margin-bottom: 20px;">Chosen Employees :</h2>
+            
+            <div class="admin-card" style="width: 40% !important; ">
+                <img class="admin-image" src="../assets/images/admin1.png" alt="Admin Image" />
+                <div>
+                    <h5>Korichi Anfal</h5>
+                    <p style="font-size: 10px;color: #888;">AI engineer</p>
+                </div>
+            </div>
+            <div class="edit">
+                <a href="SearchEmployee.html">
+                <span style="
+                background-color: transparent !important; 
+                color: #4318FF !important; 
+                border: 2px solid #4318FF !important; 
+                padding: 5px 15px !important; 
+                margin-left: -75px !important;
+                border-radius: 70px !important; 
+                width: auto !important; 
+                height: auto !important;">Add Employee</span></a>             
+        </div>
+        <!-- <div class="edit">
+            <a href="SearchEmployee.html">
+                <span style="
+                    border: 2px solid #4318FF !important; 
+                    padding: 5px 15px !important; 
+                    margin-left: 750px !important; 
+                    border-radius: 70px !important; 
+                    width: auto !important; 
+                    height: auto !important;
+                    cursor: pointer; 
+                ">Done</span>
+            </a>
+        </div> -->
+        
+
+    </div>
+    
+
+
+    <script src="../components/card.js"></script>
+    <div id="logoutModal">
+        <div class="modal-content">
+            <h2>Are you sure you want to log out?</h2>
+            <button onclick="navigateToPage('../Login.html');">Confirm</button>
+            <button class="cancel" onclick="hideLogoutConfirmation();">Cancel</button>
+        </div>
+    </div>
+
+    
+    <script>
+        function navigateToPage(url) {
+            window.location.href = url;
+        }
+
+        function showLogoutConfirmation() {
+            document.getElementById('logoutModal').style.display = 'block';
+        }
+
+        function hideLogoutConfirmation() {
+            document.getElementById('logoutModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

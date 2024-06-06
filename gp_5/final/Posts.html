@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Job Description</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f4fd;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container1 {
+            width: 100%;
+            max-width: 800px;
+            max-height: 7000px;
+            height: 80%;
+        }
+
+        .white-container1 {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0px;
+            height: 500px;
+        }
+
+        .input-container1 {
+            margin-bottom: 20px;
+        }
+
+        .input-container1 label {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2b3674;
+            display: block;
+        }
+        .input-container1 textarea {
+            width: 100%;
+            height: 400px;
+            background-color: #F2F4FD;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-sizing: border-box;
+            resize: none;
+        }
+        .input-container1 div[contenteditable] {
+            width: 100%;
+            height: 400px;
+            background-color: #F2F4FD;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .post-btn{
+            background-color: #4318ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            float: right;
+            margin: 10px px;
+        }
+
+        .post-btn:hover,
+        .search-btn:hover {
+            background-color: #3215cc;
+        }
+
+        .toolbar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .toolbar select,
+        .toolbar button,
+        .toolbar input[type="color"] {
+            padding: 5px;
+        }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            text-align: center;
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Center the result text in the modal */
+        /* #result-modal {
+            margin-top: 20px;
+            text-align: left;
+        } */
+         /* CSS for white container */
+         .white-container {
+            background-color: #fff;
+            margin-bottom: 20px;
+            margin-right: auto;
+            margin-left: auto;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            text-align: center;
+            max-width: 400px; /* Set max width for smaller screens */
+        }
+
+        /* CSS for input container */
+        .input-container {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .input-container label {
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .input-container textarea {
+            width: 100%;
+            background-color: #F2F4FD;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-sizing: border-box;
+            resize: none;
+        }
+
+        /* CSS for search button */
+        .search-btn {
+            background-color: #4318FF;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .search-btn:hover {
+            background-color: #3215cc;
+        }
+
+        /* CSS for result container */
+        .result-container {
+            background-color: #F2F4FD;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            display: none; /* Initially hidden */
+        }
+
+        .result-container h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Center the result text in the modal */
+        #result-modal {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container1">
+        <div class="white-container1">
+            <div class="input-container1">
+                <label for="job-description">Job Description:</label>
+                <div id="job-description" contenteditable="true" placeholder="Enter job description...."></div>
+            </div>
+            <div class="toolbar">
+                <select id="font-select">
+                    <option value="Arial">Arial</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Verdana">Verdana</option>
+                </select>
+                <select id="font-size-select">
+                    <option value="1">12px</option>
+                    <option value="2">14px</option>
+                    <option value="3" selected>16px</option>
+                    <option value="4">18px</option>
+                    <option value="5">20px</option>
+                </select>
+                <input type="color" id="font-color-picker" value="#000000">
+                <button id="bold-btn">Bold</button>
+                <button id="underline-btn">Underline</button>
+                <button id="italic-btn">Italic</button>
+            </div>
+            <button class="post-btn" onclick="window.location.href='index.html'">Post</button>
+            <button id="openModal" class="search-btn">Generate with AI</button>
+        </div>
+    </div>
+
+    <script>
+        function postJobDescription() {
+            const jobDescription = document.getElementById('job-description').innerHTML;
+            // You can handle the job description here, such as sending it to the backend or displaying it on another page
+            console.log('Job Description:', jobDescription);
+        }
+
+        // Apply styles based on user selections
+        function applyStyles(command, value = null) {
+            document.execCommand(command, false, value);
+        }
+
+        document.getElementById('font-select').addEventListener('change', (e) => {
+            applyStyles('fontName', e.target.value);
+        });
+
+        document.getElementById('font-size-select').addEventListener('change', (e) => {
+            applyStyles('fontSize', e.target.value);
+        });
+
+        document.getElementById('font-color-picker').addEventListener('input', (e) => {
+            applyStyles('foreColor', e.target.value);
+        });
+
+        document.getElementById('bold-btn').addEventListener('click', () => {
+            applyStyles('bold');
+        });
+
+        document.getElementById('italic-btn').addEventListener('click', () => {
+            applyStyles('italic');
+        });
+
+        document.getElementById('underline-btn').addEventListener('click', () => {
+            applyStyles('underline');
+        });
+
+        
+    </script>
+
+    
+ <!-- The Modal -->
+ <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Enter Job Description</h2>
+        <div class="input-container">
+            <label for="jobDescription">Job Description:</label>
+            <textarea id="jobDescription" placeholder="Enter job description here..."></textarea>
+        </div>
+        <button class="search-btn" id="generateButton">Generate</button>
+
+        <!-- Container for result -->
+        <div class="result-container" id="resultContainer">
+            <h3>Generated Job Description:</h3>
+            <div id="generatedText"></div>
+        </div>
+    </div>
+
+</div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "@google/generative-ai": "https://esm.run/@google/generative-ai"
+            }
+        }
+    </script>
+    <script type="module">
+     import { GoogleGenerativeAI } from "@google/generative-ai";
+
+// Access your API key (replace "YOUR_API_KEY" with your actual API key)
+const API_KEY = "AIzaSyD3VpFWtk1eUAcTrMgUXv_3DCShNDrQcss";
+const genAI = new GoogleGenerativeAI(API_KEY);
+
+async function generateDescription() {
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const prompt = document.getElementById("jobDescription").value;
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = await response.text();
+    return text;
+}
+
+document.getElementById("generateButton").addEventListener("click", async () => {
+    try {
+        const generatedText = await generateDescription();
+        document.getElementById("generatedText").textContent = generatedText;
+        document.getElementById("resultContainer").style.display = "block"; // Show the result container
+    } catch (error) {
+        console.error("Error occurred while generating job description:", error);
+        document.getElementById("generatedText").textContent = "Error occurred while generating job description. Please try again later.";
+        document.getElementById("resultContainer").style.display = "block"; // Show the result container
+    }
+});
+
+        // Get the modal
+        const modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        const btn = document.getElementById("openModal");
+
+        // Get the <span> element that closes the modal
+        const span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+            document.getElementById("resultContainer").style.display = "none"; // Hide the result container when closing the modal
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.getElementById("resultContainer").style.display = "none"; // Hide the result container when closing the modal
+            }
+        }
+    </script>
+</body>
+</html>

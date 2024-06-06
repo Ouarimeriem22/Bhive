@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#jobs">Jobs</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="home-section">
+        <div class="home-content">
+            <h1>Welcome to Our Job Portal</h1>
+            <p>Your dream job is just a click away!</p>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <p>At Bhive , we are dedicated to bridging the gap between talented individuals and top companies. Our mission is twofold: to assist job seekers in finding rewarding employment opportunities and to empower companies in discovering qualified candidates to drive their success.</p>
+        <p>For job seekers, we offer a user-friendly platform where they can explore a wide range of job openings, from entry-level positions to executive roles, across various industries and locations. Our goal is to streamline the job search process, providing valuable resources and support to help individuals achieve their career aspirations.</p>
+        <p>For employers, we provide a comprehensive hiring solution designed to simplify the recruitment process and identify the best-fit candidates for their organizations. Through our advanced search and matching algorithms, we connect companies with skilled professionals who possess the qualifications and expertise needed to excel in their roles.</p>
+        <p>Whether you're a job seeker seeking your next opportunity or a company looking to build a talented workforce, JobConnect is here to support you every step of the way. Join us in shaping the future of work and unlocking new possibilities for career advancement and organizational growth.</p>
+    </section>
+    
+    
+    <section id="jobs" class="jobs-section">
+        <h2>Job Offers</h2>
+        <div class="job-list">
+            <div class="job-offer">
+                <h3>Data Scientist</h3>
+                <p><strong>Company:</strong> Tech Innovators Ltd.</p>
+                <p><strong>Location:</strong> Sour El Ghozlane, Bouira</p>
+                <p><strong>Remote:</strong> Yes</p>
+                <p><strong>Requirements:</strong> Python, Machine Learning, Data Visualization</p>
+                <p><strong>Description:</strong> Tech Innovators Ltd. is seeking a talented Data Scientist to join our innovative team. The ideal candidate should have a strong background in Python, machine learning techniques, and data visualization tools. This position offers the opportunity to work remotely and collaborate with cross-functional teams to drive data-driven solutions.</p>
+                <button class="apply-btn">Apply for this job</button>
+            </div>
+            <div class="job-offer">
+                <h3>Graphic Designer</h3>
+                <p><strong>Company:</strong> Creative Solutions Inc.</p>
+                <p><strong>Location:</strong> Sidi Abdelah, Algiers </p>
+                <p><strong>Remote:</strong> No</p>
+                <p><strong>Requirements:</strong> Adobe Creative Suite, UI/UX Design, Typography</p>
+                <p><strong>Description:</strong> Creative Solutions Inc. is hiring a skilled Graphic Designer to join our dynamic team in Algeria . The ideal candidate should be proficient in Adobe Creative Suite, with a strong eye for UI/UX design and typography. This role involves collaborating with marketing and product teams to create visually stunning graphics for digital and print media.</p>
+                <button class="apply-btn">Apply for this job</button>
+            </div>
+        </div>
+    </section>
+    
+    
+    <footer>
+        <div class="footer-content">
+            <div class="contact">
+                <h3>Contact Us</h3>
+                <p>Email: support@jobportal.com</p>
+                <p>Phone: +123 456 7890</p>
+            </div>
+            <div class="support">
+                <h3>Support</h3>
+                <p>FAQs</p>
+                <p>Help Center</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navbar links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

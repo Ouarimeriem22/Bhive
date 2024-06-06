@@ -1,0 +1,113 @@
+body {
+    background-color: #F4F7FE; /* Set background color to #E5E5E5 */
+    color: #2B3674; /* Set text color to black */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox layout */
+    font-family: 'DM Sans', sans-serif;
+}
+.main-content {
+    flex: 1; /* Allow main content to take remaining space */
+    padding: 15px; /* Add padding for better readability */
+    margin-left: 20%;
+  }
+.sidebar {
+    width: 17%; /* Set sidebar width to 15% of page width */
+    height: 100vh; /* Set sidebar height to 100% of viewport height */
+    background-color: #FFFFFF; /* Set sidebar background color */
+    position: fixed; /* Make the sidebar fixed */
+    left: 0; /* Align sidebar to the left */
+    top: 0; /* Align sidebar to the top */
+    z-index: 1; /* Ensure sidebar is above other content */
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start; 
+}
+
+.sidebar-item {
+    margin-left: 20px; /* Add margin to the right of icons */
+    font-size: 16px; /* Set font size */
+    display: flex;
+    align-items: center; /* Use flexbox layout */
+    padding: 10px; /* Add padding */
+    font-weight:700;
+    padding-bottom: 15px;
+    color: #A3AED0;
+    
+
+}
+.logout-item {
+    position: absolute;
+    bottom: 20px; /* Adjust vertical position */
+}
+.sidebar-item img {
+    margin-right: 10px; /* Add space between icon and title */
+}
+.sidebar-item {
+    color: #A3AED0;
+    
+}
+
+.sidebar-item:hover {
+    color: #4318FF; /* Change text color on hover */
+}
+
+
+/* Modal styles */
+#logoutModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    z-index: 1000; /* Ensure modal appears on top of other content */
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    height: 150px;
+    text-align: center;
+}
+
+.modal-content h2 {
+    color: black;
+}
+
+.modal-content button {
+    margin: 10px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button.cancel {
+    background-color: #f44336;
+}
+
+.simple-card {
+    width: 200px; /* Set the maximum width of the cards to 200px */
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px; /* Adjust the margin between rows */
+    margin-right: 30px; 
+    /* Add other styling properties as needed */
+  }
+
+  .simple-card .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire card */
+  }
+  

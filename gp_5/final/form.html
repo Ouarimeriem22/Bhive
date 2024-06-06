@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Information</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #F2F4FD;
+            color: #2B3674;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .main-content {
+            text-align: center;
+        }
+        
+        .btn {
+            background-color: #4318FF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #3215cc;
+        }
+        
+        .form-popup {
+            display: none;
+            position: fixed;
+            z-index: 9;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-container {
+            padding: 20px;
+        }
+        
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+        
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #2B3674;
+        }
+        
+        .form-container input[type="text"],
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Button to open the popup form -->
+        <button onclick="openForm()" class="btn">Open Form</button>
+
+        <!-- Popup form -->
+        <div class="form-popup" id="myForm">
+            <form class="form-container" id="confirmForm">
+                <!-- Display extracted information here -->
+                <h2>Confirm Information</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter Name" required>
+
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" placeholder="Enter Email" required>
+
+                <label for="skills">Skills:</label>
+                <textarea id="skills" name="skills" placeholder="Enter Skills" required></textarea>
+
+                <label for="education">Education:</label>
+                <input type="text" id="education" name="education" placeholder="Enter Education" required>
+
+                <label for="experience">Experience:</label>
+                <input type="text" id="experience" name="experience" placeholder="Enter Experience" required>
+
+                <label for="mobile_number">Mobile Number:</label>
+                <input type="text" id="mobile_number" name="mobile_number" placeholder="Enter Mobile Number" required>
+
+                <!-- Buttons to submit or close the form -->
+                <button type="submit" class="btn">Submit</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+
+            // Fetch data from backend and fill the form
+            fetch('/extracted_data')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('name').value = data.name || '';
+                    document.getElementById('email').value = data.email || '';
+                    document.getElementById('skills').value = data.skills || '';
+                    document.getElementById('education').value = data.education || '';
+                    document.getElementById('experience').value = data.experience || '';
+                    document.getElementById('mobile_number').value = data.mobile_number || '';
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+</body>
+</html>

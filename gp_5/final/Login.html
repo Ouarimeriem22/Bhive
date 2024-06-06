@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="assets/css/styles1.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card"> 
+            <div>
+                <h2 style="text-align: left;margin-bottom: 10px; margin-left: 40px;">Log In</h2>
+                <p style=" font-size: 16; color: #A3AED0; margin-bottom: 20px;  margin-left: 40px;" >Enter your email and password to sign in!</p>
+    
+                <div class="input-field">
+                    <label for="email">Email*</label><br>
+                    <input type="email" id="email" name="email" placeholder="enter your email">
+                </div>
+                <div class="input-field">
+                    <label for="password">Password*</label><br>
+                    <input type="password" id="password" name="password" placeholder="enter your password">
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="keep-logged-in" style="margin-right: 40px;">
+                    <label for="keep-logged-in" style="text-align:left;">Keep me logged in</label>
+                    <a href="#" class="forgot-password" style="font-size: 2;text-align:right; margin-left: 39px;">Forgot password?</a>
+                </div>
+                
+                <div class="add-buttons">
+                    <button type="button" class="login-btn" onclick="login()">Login</button>
+                </div>
+                
+            </div>
+        </div>
+        <div class="login-picture">
+            <!-- Your image goes here -->
+            <img src="assets/images/login.png">
+        </div>
+    </div>
+    
+    <script>
+       function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    fetch('http://localhost:5050/login', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'  // Update Content-Type to application/json
+    },
+    body: JSON.stringify({ email: email, password: password }),
+})
+.then(response => response.json())
+.then(data => {
+    if (data.status === 200) {
+        // Store user data in session storage
+        sessionStorage.setItem('userEmail', email);
+        sessionStorage.setItem('userRole', data.data.role);
+        sessionStorage.setItem('userId', data.data.user_id);  // Store user ID
+        sessionStorage.setItem('isLoggedIn', true);
+
+        // Redirect based on role
+        const userRole = data.data.role;
+        if (userRole === 'admin') {
+            window.location.href = "C:\\Users\\Anfal\\Desktop\\final\\Admin\\Admins_ps.html";
+        } else if (userRole === 'employee') {
+            window.location.href =  "C:\Users\Anfal\Desktop\final\Employee\Employee_ps.html";
+        } else if (userRole === 'project_manager') {
+            window.location.href =  "C:\Users\Anfal\Desktop\final\PM\PM_ps.html";
+        }
+    } else {
+        alert(data.message);
+    }
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+
+}
+    </script>
+</body>
+</html>

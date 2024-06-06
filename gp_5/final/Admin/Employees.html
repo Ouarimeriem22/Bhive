@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employees</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/sidebar.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" />
+</head>
+
+<body>
+    <div class="sidebar">
+        <!-- Sidebar content goes here -->
+        <h2 style="font-weight: 50;margin-top: 25px;margin-left:30px;">
+            <b style="font-weight: 900;">B</b>hive
+        </h2>
+        <div class="sidebar-item">
+            <img src="../assets/icons/project_space.svg" />
+            <span onclick="navigateToPage('admins_ps.html');">Project Space</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/admins.svg" />
+            <span onclick="navigateToPage('admins.html');">Admin</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/employee.svg" />
+            <span onclick="navigateToPage('Employees.html');">Employee</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/profile.svg">
+            <span onclick="navigateToPage('Profile.html');">Profile</span>
+        </div>
+        <div class="sidebar-item logout-item">
+            <img src="../assets/icons/Logout.svg">
+            <span onclick="showLogoutConfirmation();">Log out</span>
+        </div>
+    </div>
+    </div>
+    <div class="main-content">
+        <!-- Main content goes here -->
+        <h1>Employees</h1>
+        <h5 style="margin-top: 50px; margin-bottom: 20px;">Employees</h5>
+        <div class="admin-card">
+           
+            <div id="admin-container"> </div>
+        </div>
+        
+           
+            
+        </div>
+    </div>
+    <!-- Add Employee card -->
+    <!-- Add Employee card -->
+    <div class="add-admin-card add-emp-card">
+        <div>
+            <h2 style="text-align: center;margin-bottom: 50px;">Add Employee</h2>
+            <form id="employeeForm" method="POST" enctype="multipart/form-data">
+                <div class="input-field">
+                    <label for="email">Email*</label><br>
+                    <input type="email" id="email" name="email" placeholder=" mail@simmmple.com">
+                </div>
+                <div class="input-field">
+                    <label for="password">Password*</label><br>
+                    <input type="password" id="password" name="password" placeholder=" Min. 8 characters">
+                </div>
+                <div class="input-field">
+                    <label for="cv">CV*</label><br>
+                    <input type="file" id="cv" name="cv" accept=".pdf">
+                </div>
+
+                <div class="add-buttons">
+                    <button class="clear-button">Clear</button>
+                    <button type="submit" class="add-button">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- JavaScript code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#employeeForm').submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData();
+                var fileInput = document.getElementById('cv');
+                formData.append('cv', fileInput.files[0]);
+                formData.append('email', document.getElementById('email').value);
+                formData.append('password', document.getElementById('password').value);
+
+                fetch('http://localhost:5050/process_resume', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    alert('Employee added successfully!');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error adding employee. Please try again.');
+                });
+            });
+        });
+
+
+        function logout() {
+    fetch('http://localhost:5050/logout', {
+        method: 'POST',  // Change this to POST if the server expects POST
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === 200) {
+            window.location.href = '../Login.html';
+        } else {
+            throw new Error(data.message || 'Logout failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Logout failed: ' + error.message); // Optionally show error to the user
+    });
+}
+
+
+
+//get employees 
+
+function fetchEmployees() {
+fetch('http://localhost:5050/get_employees')
+.then(response => {
+if (!response.ok) {
+    throw new Error('Network response was not ok');
+}
+return response.json();
+})
+.then(data => {
+if (!Array.isArray(data.data)) {  // Ensure that data.data is an array
+    console.error('Expected an array of employees, received:', data);
+    throw new TypeError('Received data is not an array');
+}
+const container = document.getElementById('admin-container');
+data.data.forEach(employee => {
+    const adminCard = createAdminCard(employee); // Use createAdminCard to generate the card
+    container.appendChild(adminCard); // Append the created card to the container
+});
+})
+.catch(error => console.error('Error loading employee data:', error));
+}
+
+
+
+function createAdminCard(employee) {
+    const card = document.createElement('div');
+    card.className = 'admin-card';
+
+    const image = document.createElement('img');
+    image.className = 'admin-image';
+    image.src = '../assets/images/admin1.png';  // Adjust if you have different images per admin
+    image.alt = 'Admin Image';
+
+    const infoDiv = document.createElement('div');
+    const name = document.createElement('h5');
+    name.textContent = employee.name;  // Display the admin's name
+
+    const email = document.createElement('p');
+    email.textContent = employee.email;  // Display the admin's email
+
+    infoDiv.appendChild(name);
+    infoDiv.appendChild(email);
+    card.appendChild(image);
+    card.appendChild(infoDiv);
+
+    return card;
+}
+
+    </script>
+</body>
+
+</html>

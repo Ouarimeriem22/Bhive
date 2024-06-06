@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Admin</title>
+    <link rel="stylesheet" href="../assets/css/sidebar.css">
+    <link rel="stylesheet" href="../assets/css/popup.css" />
+    <link rel="stylesheet" href="../components/card.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+</head>
+<body>
+    <div class="sidebar" >
+        <!-- Sidebar content goes here -->
+        <h2 style="font-weight: 50;margin-top: 25px;margin-left:30px;">
+            <b style="font-weight: 900;">B</b>hive
+        </h2>
+        <div class="sidebar-item">
+            <img src="../assets/icons/project_space.svg" />
+            <span onclick="navigateToPage('admins_ps.html');">Project Space</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/admins.svg" />
+            <span onclick="navigateToPage('admins.html');">Admin</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/employee.svg" />
+            <span onclick="navigateToPage('Employees.html');">Employee</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="../assets/icons/profile.svg">
+            <span onclick="navigateToPage('Profile.html');">Profile</span>
+        </div>
+        <div class="sidebar-item logout-item">
+            <img src="../assets/icons/Logout.svg">
+            <span onclick="showLogoutConfirmation();">Log out</span>
+        </div>
+    </div>
+  
+
+    <div class="main-content">
+        <!-- Main content goes here -->
+        <h1>Project Space</h1>
+       
+        <div class="card-row" id="cardContainer">
+            <!-- Cards will be dynamically added here -->
+        </div>
+    </div>
+
+    <script src="../components/card.js"></script>
+
+    <div class="form-popup" id="myForm">
+      <form class="form-container" id="confirmForm">
+          <h2>Add Project:</h2>
+
+          <label>Project Name:</label>
+          <input type="text" id="p_Name" name="p_Name" required />
+
+          <label>Project Manager:</label>
+          <input type="text" id="PM_name" name="PM_name" required />
+
+          <label>Description:</label>
+          <textarea id="Description" name="Description"></textarea>
+
+          <!-- Buttons to submit or close the form -->
+          <button type="button" class="formcancelbtn" onclick="closeForm()" style="margin-right: 204px">
+              Cancel
+          </button>
+          <button type="submit" class="formaddbtn" onclick="add_Project()">Add</button>
+      </form>
+  </div>
+
+    <div id="logoutModal">
+        <div class="modal-content">
+            <h2>Are you sure you want to log out?</h2>
+            <button onclick="navigateToPage('../Login.html');">Confirm</button>
+            <button class="cancel" onclick="hideLogoutConfirmation();">Cancel</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <script>
+
+        function add_Project() {
+            event.preventDefault(); // Prevent default form submission behavior
+        
+            // Get task details from the form
+            var p_Name = document.getElementById("p_Name").value;
+            var PM_name = document.getElementById("PM_name").value;
+            var Description = document.getElementById("Description").value;
+            
+        
+            // Prepare data to send in the request body
+            var data = {
+                p_Name: p_Name,
+                PM_name: PM_name,
+                Description: Description
+            };
+        
+            // Fetch API to send a POST request to add_task endpoint
+            fetch('http://localhost:5050/add_Project', { // Assuming Flask server is running on port 5000
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle response
+                if (data.status === 200) {
+                    // Task added successfully
+                    console.log(data.message);
+                    // Optionally, you can reload the page or perform any other action
+                    window.location.reload(); // Reload the page
+                } else {
+                    // Error adding task
+                    console.error('Error adding Project:', data.message);
+                    // Optionally, you can display an error message to the user
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Optionally, you can display an error message to the user
+            });
+        
+        
+            closeForm();
+            window.onload = fetchTasks;
+        }
+
+
+        function navigateToPage(url) {
+            window.location.href = url;
+        }
+
+        function showLogoutConfirmation() {
+            document.getElementById('logoutModal').style.display = 'block';
+        }
+
+        function hideLogoutConfirmation() {
+            document.getElementById('logoutModal').style.display = 'none';
+        }
+
+
+
+
+
+      // Data for the simple card
+    const simpleCardData = {
+      image: '../assets/images/add-projrct.png' 
+    };
+
+    // Function to create the simple card
+    function createSimpleCard(cardData) {
+      const card = document.createElement('div');
+      card.classList.add('simple-card'); 
+
+      const cardContent = document.createElement('div');
+      cardContent.classList.add('card-content');
+
+      const imageContainer = document.createElement('div');
+      imageContainer.classList.add('image-container');
+
+      const cardImage = document.createElement('img');
+      cardImage.src = cardData.image;
+      cardImage.alt = 'Simple Card Image';
+      cardImage.classList.add('card-image');
+
+
+      // Add event listener to redirect to another page when clicked
+      card.addEventListener('click', function() {
+        openForm();
+        
+      }); 
+      
+      imageContainer.appendChild(cardImage);
+      cardContent.appendChild(imageContainer);
+      card.appendChild(cardContent);
+
+    
+
+      return card;
+    }
+
+    // Function to render the simple card at the end of the card display
+    function renderSimpleCard() {
+      const cardContainer = document.getElementById('cardContainer');
+      const simpleCardElement = createSimpleCard(simpleCardData);
+      cardContainer.appendChild(simpleCardElement);
+    }
+
+    
+    renderSimpleCard();
+     
+
+    function logout() {
+            // Make an AJAX request to logout endpoint
+            fetch('flask-hello-world-psi-green.vercel.app/users/logout', {
+                method: 'GET',
+            })
+            .then(response => {
+                if (response.redirected) {
+                    // Redirect to login page after successful logout
+                    window.location.href = response.url;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    function openForm() {
+          document.getElementById("myForm").style.display = "block";
+          document.getElementById("modalOverlay").style.display = "block";
+          document.getElementById("mainContent").classList.add("blur-background");
+      }
+    function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+          document.getElementById("modalOverlay").style.display = "none";
+          document
+              .getElementById("mainContent")
+              .classList.remove("blur-background");
+    }
+    function createModalOverlay() {
+          var overlay = document.createElement("div");
+          overlay.classList.add("modal-overlay");
+          document.body.appendChild(overlay);
+          overlay.style.display = "block";
+      }
+    function removeModalOverlay() {
+          var overlay = document.querySelector(".modal-overlay");
+          if (overlay) {
+              overlay.parentNode.removeChild(overlay);
+          }
+      }
+
+     
+      </script>
+</body>
+</html>
